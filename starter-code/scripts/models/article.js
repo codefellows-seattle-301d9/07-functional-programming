@@ -104,15 +104,22 @@
         the matching articles written by the specified author. */
     return Article.allAuthors().map(function(author) {
       return {
-        // name:
-        // numWords: someCollection.filter(function(curArticle) {
-        //  what do we return here to check for matching authors?
-        // })
-        // .map(...) // use .map to return the author's word count for each article's body (hint: regexp!).
-        // .reduce(...) // squash this array of numbers into one big number!
+        name: author,
+        numWords: Article.allArticles.filter(function(curArticle) {
+         // what do we return here to check for matching authors?
+          return curArticle.author === author;
+        }).map(function(article) {
+            //DONE: Grab the word count from each article body.
+          return article.body.match(/\w+/g).length;
+        })
+        .reduce(function(total, curr) {
+          return total + curr;
+        })
       };
-    });
-  };
+        //.map(...) // use .map to return the author's word count for each article's body (hint: regexp!).
+        //.reduce(...) // squash this array of numbers into one big number!
+    })
+  ;};
 
   module.Article = Article;
 })(window);
