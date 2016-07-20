@@ -64,15 +64,15 @@
     });
   };
 
-  /* TODO: Chain together a `map` and a `reduce` call to get a rough count of
+  /* TODO: DONE Derek Chain together a `map` and a `reduce` call to get a rough count of
       all words in all articles. */
   Article.numWordsAll = function() {
     return Article.allArticles.map(function(article) {
         //DONE: Grab the word count from each article body.
       return article.body.match(/\w+/g).length;
-    })
-    // TODO: complete this reduce to get a grand total word count
-    .reduce(function() {
+    }).reduce(function(acc, cur) {
+      return acc + cur;
+      // TODO: DONE Derek complete this reduce to get a grand total word count
     });
   };
 
