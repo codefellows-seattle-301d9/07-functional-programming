@@ -76,3 +76,5 @@
   };
   module.articleView = articleView;
 })(window);
+
+Article.fetchAll(articleView.renderIndexPage);
