@@ -1,6 +1,6 @@
 (function(module) {
 
-  // TODO: Wrap the entire contents of this file in an IIFE.
+  // Done: Wrap the entire contents of this file in an IIFE.
   // Pass in to the IIFE a module, upon which objects can be attached for later access.
   function Article (opts) {
     for (key in opts) {
@@ -29,7 +29,7 @@
     });
   };
 
-  /* TODO: Refactoring the Article.fetchAll method, it now accepts a parameter
+  /* Done: Refactoring the Article.fetchAll method, it now accepts a parameter
       that will execute once the loading of articles is done. We do this because
       we might want to call other view functions, and not just initIndexPage();
       Now instead of calling articleView.initIndexPage(), we can call
@@ -38,7 +38,7 @@
     if (localStorage.hackerIpsum) {
       $.ajax({
         type: 'HEAD',
-        url: '/data/hackerIpsum.json',
+        url: 'data/hackerIpsum.json',
         success: function(data, message, xhr) {
           var eTag = xhr.getResponseHeader('eTag');
           if (!localStorage.eTag || eTag !== localStorage.eTag) {
@@ -57,7 +57,7 @@
   };
 
   Article.getAll = function(nextFunction) {
-    $.getJSON('/data/hackerIpsum.json', function(responseData) {
+    $.getJSON('data/hackerIpsum.json', function(responseData) {
       Article.loadAll(responseData);
       localStorage.hackerIpsum = JSON.stringify(responseData);
       // Done: invoke nextFunction!
@@ -65,15 +65,16 @@
     });
   };
 
-  /* TODO: Chain together a `map` and a `reduce` call to get a rough count of
+  /* Done: Chain together a `map` and a `reduce` call to get a rough count of
       all words in all articles. */
   Article.numWordsAll = function() {
     return Article.allArticles.map(function(article) {
         //DONE: Grab the word count from each article body.
       return article.body.match(/\w+/g).length;
     })
-    // TODO: complete this reduce to get a grand total word count
-    .reduce(function() {
+    // Done: complete this reduce to get a grand total word count
+    .reduce(function(acc, cur) {
+      return acc + cur;
     });
   };
 
@@ -104,5 +105,5 @@
     });
   };
 
-  module.Article();
+  module.Article = Article;
 })(window);
