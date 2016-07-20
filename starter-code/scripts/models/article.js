@@ -102,7 +102,7 @@
   };
 
   Article.numWordsByAuthor = function() {
-    /* TODO: Transform each author element into an object with 2 properties:
+    /* TODO: DONE Kaylyn Transform each author element into an object with 2 properties:
         One for the author's name, and one for the total number of words across
         the matching articles written by the specified author. */
     return Article.allAuthors().map(function(author) {
@@ -122,6 +122,6 @@
     });
   };
 
-  //TODO: attach functions we need to window in this format: module.articleView = articleView;
+  //TODO: DONE Kaylyn attach functions we need to window in this format: module.articleView = articleView;
   module.Article = Article;
 })(window);
