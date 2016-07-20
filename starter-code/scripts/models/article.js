@@ -78,13 +78,22 @@
     });
   };
 
-  /* TODO: Chain together a `map` and a `reduce` call to
+  /* Done: Chain together a `map` and a `reduce` call to
             produce an array of *unique* author names. */
   Article.allAuthors = function() {
+    return Article.allArticles.map(function(article) {
+      return article.author;
+    })
+    .reduce(function(outputarray, current, index, array) {
+      if (outputarray.indexOf(current) === -1) {
+        outputarray.push(current);
+      }
+      return outputarray;
+    }, []);
     //return       TODO: map our collection
       //return    TODO: return just the author names
 
-    /* TODO: For our `reduce` that we'll chain here -- since we are trying to
+    /* Done: For our `reduce` that we'll chain here -- since we are trying to
         return an array, we'll need to specify an accumulator type...
         What data type should this accumulator be and where is it placed? */
   };
